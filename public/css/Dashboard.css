@@ -1,0 +1,286 @@
+/* Variables de color y escala global */
+:root {
+  /* Colores */
+  --blue-light: #81D4FA;
+  --blue-dark:  #00BCD4;
+  --grey-light: #e0e0e0;
+  --grey-bg:    #f7faff;
+  --text-dark:  #222;
+  --white:      #fff;
+
+ /* Escala general */
+ --sidebar-width:      300px;   /* ancho del sidebar */
+ --logo-max-width:     250px;   /* ancho máximo logo */
+ --menu-icon-size:     50px;    /* tamaño de iconos del menú */
+ --menu-font-size:     30px;    /* tamaño de texto del menú */
+
+ --header-height:      240px;   /* alto del header */
+
+ --filter-font-size:     30px;  /* tamaño del icono de filtro y lupa */
+ --search-input-width:  500px;   /* ancho del buscador */
+ --search-input-font:   20px;    /* tamaño de letra del buscador */
+ --search-input-height: 50px;    /* alto del buscador */
+
+ --card-width:        500px;    /* ancho de las tarjetas */
+ --card-padding:      30px;     /* padding interno de tarjetas */
+ --title-font:        30px;     /* tamaño del título de la tarjeta */
+ --count-font:        60px;     /* tamaño del número principal */
+ --progress-height:   16px;     /* grosor de la barra de progreso */
+ --footer-font:       20px;     /* tamaño del texto de pie de tarjeta */
+
+ --stats-padding:     30px;     /* padding de la sección de estadísticas */
+}
+
+/* RESET BÁSICO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000; /* marco negro alrededor */
+}
+
+/* CONTENEDOR PRINCIPAL */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--white);
+  border-right: 1px solid var(--grey-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar .logo {
+  padding: 24px;
+  text-align: center;
+}
+.sidebar .logo img {
+  max-width: var(--logo-max-width);
+}
+.sidebar .menu ul {
+  list-style: none;
+}
+.sidebar .menu li {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.sidebar .menu li:hover {
+  background: var(--grey-bg);
+}
+.sidebar .menu li i {
+  font-size: var(--menu-icon-size);
+  margin-right: 14px;
+  color: var(--text-dark);
+}
+.sidebar .menu li span {
+  font-size: var(--menu-font-size);
+  color: var(--text-dark);
+}
+/* footer del sidebar */
+.sidebar-footer {
+  border-top: 1px solid var(--grey-light);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-footer .profile {
+  display: flex;
+  align-items: center;
+}
+.sidebar-footer .profile img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+/* ESTILO PARA NOMBRE DE USUARIO */
+#profileName {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-left: 8px;
+}
+.sidebar-footer .logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sidebar-footer .logout i {
+  font-size: 25px;
+  color: var(--text-dark);
+}
+
+/* ÁREA PRINCIPAL */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  overflow-y: auto;
+}
+
+/* HEADER */
+.main-header {
+  height: var(--header-height);
+  background: url('/Images/header-bg.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.main-header img {
+  width: 100%;      /* ocupa el 100% del contenedor padre */
+  height: auto;     /* ajusta la altura manteniendo la proporción */
+  }
+
+.main-header h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--header-font-size);
+  font-weight: 500;
+  color: var(--white);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* BARRA SUPERIOR */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 20px;
+}
+.filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--filter-font-size);
+  color: var(--text-dark);
+}
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--grey-bg);
+  border-radius: 30px;
+  padding: 6px 14px;
+}
+.search-wrapper input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--search-input-font);
+  width: var(--search-input-width);
+  height: var(--search-input-height);
+}
+.search-wrapper i {
+  font-size: var(--filter-font-size);
+  margin-left: 10px;
+  color: var(--text-dark);
+}
+
+/* SECCIÓN DE TARJETAS */
+.stats {
+  padding: var(--stats-padding);
+}
+i.fa-solid.fa-envelope {
+  width: 60px;
+  height: 50px;
+  font-size: 40px;
+}
+.card {
+  width: var(--card-width);
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: var(--card-padding);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.card-header span {
+  font-size: var(--title-font);
+  color: var(--text-dark);
+}
+.card-body .count {
+  font-size: var(--count-font);
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+.progress-container {
+  position: relative;
+  width: 100%;
+}
+.progress-bar {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--grey-light);
+  border-radius: var(--progress-height);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--blue-light);
+  width: 0;
+  border-radius: var(--progress-height);
+  transition: width 1s ease-in-out;
+}
+.tooltip {
+  position: absolute;
+  top: -32px;
+  background: var(--white);
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.card-footer {
+  margin-top: 16px;
+}
+.card-footer span {
+  font-size: var(--footer-font);
+  color: var(--text-dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+  .sidebar .menu li span,
+  .sidebar-footer .profile span {
+    display: none;
+  }
+  .main-header {
+    height: 160px;
+  }
+  .main-header h1 {
+    font-size: 32px;
+  }
+  .search-wrapper input {
+    width: 150px;
+  }
+  .card {
+    width: 100%;
+  }
+}

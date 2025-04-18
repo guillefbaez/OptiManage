@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Óptica Jireh – Recuperar contraseña</title>
+  <link rel="stylesheet" href="/public/css/ContraseñaOlvidada.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      
+      <!-- FORMULARIO -->
+      <div class="login-form">
+        <div class="logo">
+          <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+        </div>
+        <h2>¿Olvidaste tu contraseña?</h2>
+        <form id="resetForm">
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com">
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Nueva Contraseña</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Contraseña">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirma la Contraseña</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repite contraseña">
+          </div>
+          <button type="submit" class="submit-btn">
+            Recuperar<br>la contraseña
+          </button>
+        </form>
+        <p class="small-text bottom-link">
+          <a href="/public/Inicio.html">Iniciar sesión</a>
+        </p>
+      </div>
+
+      <!-- IMAGEN -->
+      <div class="login-image">
+        <img src="/public/images/Fondo-Inicio.png" alt="Paciente en examen de la vista">
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="/public/js/ContraseñaOlvidada.js" defer></script>
+</body>
+</html>
