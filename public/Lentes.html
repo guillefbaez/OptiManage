@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Óptica Jireh – Dashboard</title>
+  <title>Óptica Jireh – Clientes</title>
   <link rel="stylesheet" href="/public/css/Dashboard.css">
+  <link rel="stylesheet" href="/public/css/Clientes.css">
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -18,12 +19,13 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="logo">
+        <a href="/public/Dashboard.html">
         <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+        </a>
       </div>
       <nav class="menu">
         <ul>
           <li><i class="fa-solid fa-user"></i><a href="Clientes.html"><span>Clientes</span></a></li>
-          <!--<li><i class="fa-solid fa-file-medical"></i><a href="HistorialClinico.html"><span>Historial Clínico</span></a></li> Se puede cambiar a Clientes en ver detalles y agregar más -->
           <li><i class="fa-solid fa-glasses"></i><a href="Lentes"><span>Lentes</span></a></li>
           <li><i class="fa-solid fa-hands"></i><a href="Lentes"><span>Proveedores</span></a></li>
           <li><i class="fa-solid fa-file-lines"></i><a href="Lentes"><span>Reportes</span></a></li>
@@ -56,30 +58,63 @@
         </div>
       </div>
 
-      <!-- TARJETA DE ESTADÍSTICA -->
-      <section class="stats">
-        <div class="card">
-          <div class="card-header">
-            <span>Nuevo mensajes</span>
-            <i class="fa-solid fa-envelope"></i>
-          </div>
-          <div class="card-body">
-            <div class="count">40</div>
-            <div class="progress-container">
-              <div class="progress-bar">
-                <div class="progress-fill" data-perc="70"></div>
-              </div>
-              <div class="tooltip"></div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Tasa de respuesta</span>
-          </div>
+      <!-- TABLA DE CLIENTES -->
+      <section class="tabla-clientes-section">
+        <div class="tabla-container">
+          <h2>Lista de clientes</h2>
+          <button id="btnAgregarCliente" class="btn-agregar-cliente">➕ Agregar Cliente</button>
+      </button>
+          <table class="tabla-clientes">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Fecha de última consulta</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
+
+      <!-- MODAL DE DETALLES -->
+<div id="modalDetalles" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <h3>Editar Cliente</h3>
+      <form id="formDetalles">
+        <label>Nombre:</label>
+        <input type="text" id="inputNombre"><br><br>
+  
+        <label>Teléfono:</label>
+        <input type="text" id="inputTelefono"><br><br>
+  
+        <label>Correo:</label>
+        <input type="email" id="inputCorreo"><br><br>
+  
+        <label>Última Consulta:</label>
+        <input type="date" id="inputUltimaConsulta"><br><br>
+  
+        <hr style="margin: 20px 0;">
+        <h4>Historial Clínico</h4>
+  
+        <!-- Campos para una sola entrada de historial -->
+        <label>Fecha del historial:</label>
+        <input type="date" id="nuevaFecha"><br><br>
+  
+        <label>Detalle del historial:</label>
+        <input type="text" id="nuevoDetalle" placeholder="Descripción del historial"><br><br>
+  
+        <!-- Lista de historial existente -->
+        <ul id="listaHistorial" class="lista-historial"></ul>
+  
+        <button type="button" onclick="guardarCambios()">Guardar Cambios</button>
+      </form>
     </div>
   </div>
 
-  <script src="/public/js/Dashboard.js" defer></script>
+  <script src="/public/js/Lentes.js" defer></script>
 </body>
 </html>
