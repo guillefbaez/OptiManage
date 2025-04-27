@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="/public/css/Dashboard.css">
+    <link rel="stylesheet" href="/public/css/Proveedores.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-pVI1PdL+...TUZOTz9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><i class="fa-solid fa-user"></i><a href="Clientes.html"><span>Clientes</span></a></li>
+                    <li><i class="fa-solid fa-glasses"></i><a href="Lentes.html"><span>Lentes</span></a></li>
+                    <li><i class="fa-solid fa-hands"></i><a href="Proveedores.html"><span>Proveedores</span></a></li>
+                    <li><i class="fa-solid fa-file-lines"></i><a href="Reportes.html"><span>Reportes</span></a></li>
+                    <li><i class="fa-solid fa-gear"></i><a href="Configuracion.html"><span>Configuración</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="profile">
+                    <img src="/public/images/Icono-Usuario.png" alt="Avatar">
+                    <span id="profileName">Usuario</span>
+                </div>
+                <a href="/public/Inicio.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <div class="main">
+            <!-- HEADER -->
+            <header class="main-header">
+                <img src="/public/images/Banner.png" alt="Banner">
+                <h1 id="welcomeMessage"></h1>
+            </header>
+
+            <!-- Tabla de proveedores -->
+            <section>
+                <h2 id="TemaProv">Lista de Proveedores</h2><br>
+                <table id="tablaProveedores" class="display">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Productos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar productos -->
+    <div id="modalProductos" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-tema">Productos del Proveedor</h2>
+            <table id="tablaProductos">
+                <thead>
+                    <tr>
+                        <th class="modal-nombre">Nombre del Producto</th>
+                        <th class="modal-nombre">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script src="/public/js/Proveedores.js" defer></script>
+</body>
+
+</html>

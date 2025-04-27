@@ -24,6 +24,34 @@ app.get('/api/clientes', async (req, res) => {
   }
 });
 
+// Leer todos los proveedores
+app.get('/api/Proveedores', async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      'SELECT * FROM Proveedores ORDER BY Nombre ASC'
+    );
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al leer proveedores' });
+  }
+});
+
+// Leer productos de un proveedor específico
+app.get('/api/proveedores/:id/productos', async (req, res) => {
+  const proveedorId = req.params.id;
+  try {
+    const [rows] = await db.query(
+      'SELECT Nombre, Cantidad FROM Productos WHERE Id_proveedor = ?',
+      [proveedorId]
+    );
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al leer productos del proveedor' });
+  }
+});
+
 // Registrar un usuario (Crear Cuenta)
 app.post('/api/register', async (req, res) => {
   const { nombres, apellidos, correo, contrasena } = req.body;
@@ -72,4 +100,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
-
