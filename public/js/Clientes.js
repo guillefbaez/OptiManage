@@ -1,232 +1,162 @@
+let clientes = [];  // Variable para almacenar la lista de clientes
+let clienteActual = null;  // Variable para almacenar el cliente que se está editando
 
-  // Mostrar primer nombre en sidebar y header
-  const firstName = sessionStorage.getItem('firstName');
-  console.log('firstName from sessionStorage:', firstName);
-  if (firstName) {
-    document.getElementById('profileName').textContent =
-      firstName;
-  }
+// Función para hacer fetch a la API y actualizar la lista de clientes
+function fetchClientes(url, method = 'GET', data = null) {
+  const options = {
+    method: method,
+    headers: { 'Content-Type': 'application/json' },
+    body: data ? JSON.stringify(data) : null,
+  };
 
-
-const clientes = [
-    {
-      id: 'angel',
-      nombre: 'Ángel García',
-      telefono: '+52 8121746955',
-      correo: 'angel12345@gmail.com',
-      ultimaConsulta: '2023-01-21',
-      historial: [
-        { fecha: '2022-12-15', detalle: 'Diagnóstico: Miopía - Lentes recetados' },
-        { fecha: '2023-01-21', detalle: 'Control de visión - sin cambios' }
-      ]
-    },
-    {
-      id: 'guillermo',
-      nombre: 'Guillermo Flores',
-      telefono: '+52 8121746955',
-      correo: 'guillermo@gmail.com',
-      ultimaConsulta: '2023-02-15',
-      historial: []
-    },
-    {
-      id: 'lois',
-      nombre: 'Lois Smith',
-      telefono: '+52 8121746955',
-      correo: 'lois@gmail.com',
-      ultimaConsulta: '2023-03-05',
-      historial: []
-    },
-    {
-      id: 'rosa',
-      nombre: 'Rosa De La Garza',
-      telefono: '+52 8121746955',
-      correo: 'rosa@gmail.com',
-      ultimaConsulta: '2023-04-11',
-      historial: []
-    },
-    {
-      id: 'david',
-      nombre: 'David Hernandez',
-      telefono: '+52 8121746955',
-      correo: 'david@gmail.com',
-      ultimaConsulta: '2023-05-21',
-      historial: []
-    }
-  ];
-  
-  let clienteActual = null;
-  
-  // Función para cargar los clientes en la tabla
-  function cargarTablaClientes() {
-    const tablaBody = document.querySelector('.tabla-clientes tbody');
-    tablaBody.innerHTML = '';
-  
-    clientes.forEach(cliente => {
-      const fila = document.createElement('tr');
-      fila.innerHTML = `
-        <td>${cliente.nombre}</td>
-        <td>${cliente.telefono}</td>
-        <td>${cliente.correo}</td>
-        <td>${cliente.ultimaConsulta}</td>
-        <td>
-          <button class="btn-detalles" onclick="verDetalles('${cliente.id}')">Detalles</button>
-          <button class="btn-eliminar" onclick="eliminarCliente('${cliente.id}')">Eliminar</button>
-        </td>
-      `;
-      tablaBody.appendChild(fila);
+  return fetch(url, options)
+    .then(response => response.json())
+    .catch(error => {
+      console.error(`Error en la petición ${method}:`, error);
+      throw error;
     });
-  }
-  
-  // Función para abrir modal y mostrar detalles del cliente
-  function verDetalles(id) {
-    clienteActual = clientes.find(c => c.id === id);
-  
-    document.getElementById('inputNombre').value = clienteActual.nombre;
-    document.getElementById('inputTelefono').value = clienteActual.telefono;
-    document.getElementById('inputCorreo').value = clienteActual.correo;
-    document.getElementById('inputUltimaConsulta').value = clienteActual.ultimaConsulta;
-  
-    document.querySelector('#modalDetalles h3').textContent = 'Editar Cliente';
-  
-    cargarHistorial(clienteActual.historial || []);
-  
-    // Limpiar campos de historial
-    document.getElementById('nuevaFecha').value = '';
-    document.getElementById('nuevoDetalle').value = '';
-  
-    document.getElementById('modalDetalles').style.display = 'flex';
-  }
-  
-  // Cargar historial clínico en la lista
-  function cargarHistorial(historial) {
-    const listaHistorial = document.getElementById('listaHistorial');
-    listaHistorial.innerHTML = '';
-  
-    if (!historial || historial.length === 0) {
-      listaHistorial.innerHTML = '<li>Sin historial registrado.</li>';
-      return;
-    }
-  
-    historial.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.fecha} – ${item.detalle}`;
-      listaHistorial.appendChild(li);
-    });
-  }
-  
-  // Acción del botón "Agregar Cliente"
-  document.getElementById('btnAgregarCliente').addEventListener('click', function () {
-    clienteActual = null;
-  
-    document.getElementById('inputNombre').value = '';
-    document.getElementById('inputTelefono').value = '';
-    document.getElementById('inputCorreo').value = '';
-    document.getElementById('inputUltimaConsulta').value = '';
-  
-    document.querySelector('#modalDetalles h3').textContent = 'Agregar Cliente';
-  
-    cargarHistorial([]);
-  
-    document.getElementById('modalDetalles').style.display = 'flex';
-  });
-  
-  // Función para guardar cambios o agregar nuevo cliente
-  function guardarCambios() {
-    const nombre = document.getElementById('inputNombre').value.trim();
-    const telefono = document.getElementById('inputTelefono').value.trim();
-    const correo = document.getElementById('inputCorreo').value.trim();
-    const ultimaConsulta = document.getElementById('inputUltimaConsulta').value;
-  
-    const nuevaFecha = document.getElementById('nuevaFecha').value;
-    const nuevoDetalle = document.getElementById('nuevoDetalle').value.trim();
-  
-    if (!nombre || !telefono || !correo || !ultimaConsulta) {
-      alert('Por favor completa todos los campos.');
-      return;
-    }
-  
-    // Creamos una nueva entrada de historial si se proporcionaron datos
-    let nuevaEntradaHistorial = null;
-    if (nuevaFecha && nuevoDetalle) {
-      nuevaEntradaHistorial = {
-        fecha: nuevaFecha,
-        detalle: nuevoDetalle
-      };
-    }
-  
-    if (clienteActual) {
-      // Editar cliente existente
-      clienteActual.nombre = nombre;
-      clienteActual.telefono = telefono;
-      clienteActual.correo = correo;
-      clienteActual.ultimaConsulta = ultimaConsulta;
-  
-      if (nuevaEntradaHistorial) {
-        clienteActual.historial.push(nuevaEntradaHistorial);
-      }
-    } else {
-      // Agregar nuevo cliente
-      const nuevoCliente = {
-        id: `cliente_${Date.now()}`,
-        nombre,
-        telefono,
-        correo,
-        ultimaConsulta,
-        historial: nuevaEntradaHistorial ? [nuevaEntradaHistorial] : []
-      };
-      clientes.push(nuevoCliente);
-    }
-  
-    cargarTablaClientes();
-    cerrarModal();
-  }
-  
-  
-  // Función para cerrar modal
-  function cerrarModal() {
-    document.getElementById('modalDetalles').style.display = 'none';
-  }
-  
-  // Función para eliminar cliente
-  function eliminarCliente(id) {
-    if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
-      const indice = clientes.findIndex(c => c.id === id);
-      if (indice !== -1) {
-        clientes.splice(indice, 1);
-        cargarTablaClientes();
-      }
-    }
-  }
-  
-  // Inicializar la tabla al cargar
-  document.addEventListener('DOMContentLoaded', cargarTablaClientes);
-  
+}
 
-/*--------------sql---------------------
-id INT AUTO_INCREMENT PRIMARY KEY,
-nombre VARCHAR(100),
-telefono VARCHAR(20),
-correo VARCHAR(100),
-ultimaConsulta DATE
-
-otra tabla para historial:
-id INT AUTO_INCREMENT PRIMARY KEY,
-cliente_id INT,
-fecha DATE,
-detalle TEXT,
-FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
-
-
-
--------------y en const clientes que es el principio cambiarlo por fetch()------------
-let clientes = [];
-
+// Cargar todos los clientes desde el servidor
 function cargarClientesDesdeBD() {
-  fetch('http://localhost/optica/clientes.php') // Ruta a archivo PHP
-    .then(res => res.json())
+  fetchClientes('http://localhost:3000/api/clientes')
     .then(data => {
       clientes = data;
       cargarTablaClientes();
     });
 }
-*/
+
+// Mostrar los clientes en la tabla
+function cargarTablaClientes() {
+  const tablaBody = document.querySelector('.tabla-clientes tbody');
+  tablaBody.innerHTML = '';  // Limpiamos la tabla antes de agregar los nuevos datos
+
+  clientes.forEach(cliente => {
+    const fila = document.createElement('tr');
+    fila.innerHTML = `
+      <td>${cliente.Nombres} ${cliente.Apellidos}</td>
+      <td>${cliente.Telefono}</td>
+      <td>${cliente.Correo}</td>
+      <td>${formatDate(cliente.Fecha_registro)}</td>
+      <td>
+        <button class="btn-detalles" onclick="verDetalles(${cliente.Id_cliente})">Detalles</button>
+        <button class="btn-eliminar" onclick="eliminarCliente(${cliente.Id_cliente})">Eliminar</button>
+      </td>
+    `;
+    tablaBody.appendChild(fila);
+  });
+}
+
+// Ver detalles y permitir edición de un cliente
+function verDetalles(id) {
+  clienteActual = clientes.find(c => c.Id_cliente === id);
+  
+  const { Nombres, Apellidos, Telefono, Correo, Fecha_registro } = clienteActual || {};
+  document.getElementById('detalleNombreCliente').value = Nombres || '';
+  document.getElementById('detalleApellidoCliente').value = Apellidos || '';
+  document.getElementById('detalleTelefonoCliente').value = Telefono || '';
+  document.getElementById('detalleCorreoCliente').value = Correo || '';
+  document.getElementById('detalleUltimaConsultaCliente').value = Fecha_registro ? Fecha_registro.substring(0, 10) : '';
+
+  document.getElementById('modalDetallesCliente').style.display = 'flex';
+}
+
+// Función para guardar los cambios
+function guardarCambiosDetallesCliente() {
+  const nombres = document.getElementById('detalleNombreCliente').value;
+  const apellidos = document.getElementById('detalleApellidoCliente').value;
+  const telefono = document.getElementById('detalleTelefonoCliente').value;
+  const correo = document.getElementById('detalleCorreoCliente').value;
+  let fechaRegistro = document.getElementById('detalleUltimaConsultaCliente').value;
+
+  if (!nombres || !apellidos) {
+    alert('El nombre y el apellido son obligatorios.');
+    return;
+  }
+
+  if (!fechaRegistro) {
+    fechaRegistro = new Date().toISOString().split('T')[0];
+  }
+
+  const clienteData = { nombres, apellidos, telefono, correo, fecha_registro: fechaRegistro };
+
+  if (clienteActual) {
+    // Actualizar cliente existente
+    fetchClientes(`http://localhost:3000/api/clientes/${clienteActual.Id_cliente}`, 'PUT', clienteData)
+      .then(() => {
+        cargarClientesDesdeBD();
+        cerrarModalDetallesCliente();
+      });
+  } else {
+    // Agregar un nuevo cliente
+    fetchClientes('http://localhost:3000/api/clientes', 'POST', clienteData)
+      .then(() => {
+        cargarClientesDesdeBD();
+        cerrarModalDetallesCliente();
+      });
+  }
+}
+
+// Función para cerrar el modal de detalles del cliente
+function cerrarModalDetallesCliente() {
+  document.getElementById('modalDetallesCliente').style.display = 'none';
+}
+
+// Eliminar un cliente
+function eliminarCliente(id) {
+  if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
+    fetchClientes(`http://localhost:3000/api/clientes/${id}`, 'DELETE')
+      .then(() => cargarClientesDesdeBD());
+  }
+}
+
+// Cerrar el modal de agregar cliente
+function cerrarModalAgregarCliente() {
+  document.getElementById('modalAgregarCliente').style.display = 'none';
+}
+
+// Mostrar el modal de Agregar Cliente
+document.getElementById('btnAgregarCliente').addEventListener('click', function() {
+  document.getElementById('modalAgregarCliente').style.display = 'flex';
+});
+
+// Función para guardar un nuevo cliente desde el modal de agregar cliente
+function guardarNuevoCliente() {
+  const nombres = document.getElementById('agregarNombreCliente').value;
+  const apellidos = document.getElementById('agregarApellidoCliente').value;
+  const telefono = document.getElementById('agregarTelefonoCliente').value;
+  const correo = document.getElementById('agregarCorreoCliente').value;
+  let fechaRegistro = document.getElementById('agregarUltimaConsultaCliente').value;
+
+  if (!nombres || !apellidos) {
+    alert('El nombre y el apellido son obligatorios.');
+    return;
+  }
+
+  if (!fechaRegistro) {
+    fechaRegistro = new Date().toISOString().split('T')[0];
+  }
+
+  const clienteData = { nombres, apellidos, telefono, correo, fecha_registro: fechaRegistro };
+
+  fetchClientes('http://localhost:3000/api/clientes', 'POST', clienteData)
+    .then(() => {
+      cargarClientesDesdeBD();
+      cerrarModalAgregarCliente();
+      limpiarFormularioAgregarCliente();
+    });
+}
+
+// (Opcional) Función para limpiar el formulario de agregar cliente
+function limpiarFormularioAgregarCliente() {
+  document.getElementById('formAgregarCliente').reset();
+}
+
+// Formato de fecha para mostrar
+function formatDate(date) {
+  const d = new Date(date);
+  return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+}
+
+// Cargar los clientes cuando la página se cargue
+window.onload = cargarClientesDesdeBD;
