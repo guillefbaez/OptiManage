@@ -25,7 +25,7 @@ if (createForm) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error al registrar');
       sessionStorage.setItem('userId', data.id);
-      window.location.href = 'Dashboard.html';
+      window.location.href = 'Inicio.html';
     } catch (err) {
       alert(err.message);
     }
