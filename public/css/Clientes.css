@@ -70,6 +70,8 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     position: relative;
     font-family: "Segoe UI", sans-serif;
+    max-height: 80vh; /* máximo 80% del alto de la ventana */
+    overflow-y: auto; /* activa scroll si es necesario */
 }
 
 .modal-content h3 {
