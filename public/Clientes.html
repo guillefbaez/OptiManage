@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Óptica Jireh – Clientes</title>
   <link rel="stylesheet" href="/public/css/Dashboard.css">
   <link rel="stylesheet" href="/public/css/Clientes.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pVI1PdL+...TUZOTz9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pVI1PdL+...TUZOTz9w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
-
 <body>
   <div class="dashboard">
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="logo">
         <a href="/public/Dashboard.html">
-          <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+        <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
         </a>
       </div>
       <nav class="menu">
@@ -60,7 +63,6 @@
         <div class="tabla-container">
           <h2>Lista de clientes</h2>
           <button id="btnAgregarCliente" class="btn-agregar-cliente">➕ Agregar Cliente</button>
-
           <table class="tabla-clientes">
             <thead>
               <tr>
@@ -76,43 +78,80 @@
         </div>
       </section>
 
-      <!-- MODAL DE DETALLES -->
-      <div id="modalDetalles" class="modal" style="display: none;">
-        <div class="modal-content">
-          <span class="close" onclick="cerrarModal()">&times;</span>
-          <h3>Editar Cliente</h3>
-          <form id="formDetalles">
-            <label>Nombre:</label>
-            <input type="text" id="inputNombre"><br><br>
+<!-- MODAL DE DETALLES DE CLIENTE -->
+<div id="modalDetallesCliente" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModalDetallesCliente()">&times;</span>
+    <h3>Detalles del Cliente</h3>
+    <form id="formDetallesCliente">
+      <label for="detalleNombreCliente">Nombre:</label>
+      <input type="text" id="detalleNombreCliente"><br><br>
 
-            <label>Teléfono:</label>
-            <input type="text" id="inputTelefono"><br><br>
+      <label for="detalleApellidoCliente">Apellido:</label>
+      <input type="text" id="detalleApellidoCliente"><br><br>
 
-            <label>Correo:</label>
-            <input type="email" id="inputCorreo"><br><br>
+      <label for="detalleTelefonoCliente">Teléfono:</label>
+      <input type="text" id="detalleTelefonoCliente"><br><br>
 
-            <label>Última Consulta:</label>
-            <input type="date" id="inputUltimaConsulta"><br><br>
+      <label for="detalleCorreoCliente">Correo:</label>
+      <input type="email" id="detalleCorreoCliente"><br><br>
 
-            <hr style="margin: 20px 0;">
-            <h4>Historial Clínico</h4>
+      <label for="detalleUltimaConsultaCliente">Última Consulta:</label>
+      <input type="date" id="detalleUltimaConsultaCliente"><br><br>
 
-            <!-- Campos para una sola entrada de historial -->
-            <label>Fecha del historial:</label>
-            <input type="date" id="nuevaFecha"><br><br>
+      <hr style="margin: 20px 0;">
+      <h4>Historial Clínico</h4>
 
-            <label>Detalle del historial:</label>
-            <input type="text" id="nuevoDetalle" placeholder="Descripción del historial"><br><br>
+      <label for="detalleFechaHistorialCliente">Fecha del historial:</label>
+      <input type="date" id="detalleFechaHistorialCliente"><br><br>
 
-            <!-- Lista de historial existente -->
-            <ul id="listaHistorial" class="lista-historial"></ul>
+      <label for="detalleDescripcionHistorialCliente">Detalle del historial:</label>
+      <input type="text" id="detalleDescripcionHistorialCliente" placeholder="Descripción del historial"><br><br>
 
-            <button type="button" onclick="guardarCambios()">Guardar Cambios</button>
-          </form>
-        </div>
-      </div>
+      <ul id="listaHistorialCliente" class="lista-historial"></ul>
 
-      <script src="/public/js/Clientes.js" defer></script>
+      <button id="btnGuardarDetallesCliente" onclick="guardarCambiosDetallesCliente()">Guardar cambios</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL PARA AGREGAR CLIENTE -->
+<div id="modalAgregarCliente" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModalAgregarCliente()">&times;</span>
+    <h3>Agregar Nuevo Cliente</h3>
+    <form id="formAgregarCliente">
+      <label for="agregarNombreCliente">Nombre:</label>
+      <input type="text" id="agregarNombreCliente"><br><br>
+
+      <label for="agregarApellidoCliente">Apellido:</label>
+      <input type="text" id="agregarApellidoCliente"><br><br>
+
+      <label for="agregarTelefonoCliente">Teléfono:</label>
+      <input type="text" id="agregarTelefonoCliente"><br><br>
+
+      <label for="agregarCorreoCliente">Correo:</label>
+      <input type="email" id="agregarCorreoCliente"><br><br>
+
+      <label for="agregarUltimaConsultaCliente">Fecha de Última Consulta:</label>
+      <input type="date" id="agregarUltimaConsultaCliente"><br><br>
+
+      <hr style="margin: 20px 0;">
+      <h4>Historial Clínico</h4>
+
+      <label for="agregarFechaHistorialCliente">Fecha del historial:</label>
+      <input type="date" id="agregarFechaHistorialCliente"><br><br>
+
+      <label for="agregarDescripcionHistorialCliente">Detalle del historial:</label>
+      <input type="text" id="agregarDescripcionHistorialCliente" placeholder="Descripción del historial"><br><br>
+
+      <ul id="listaAgregarHistorialCliente" class="lista-historial"></ul>
+
+      <button type="button" onclick="guardarNuevoCliente()">Agregar Cliente</button>
+    </form>
+  </div>
+</div>
+
+  <script src="/public/js/Clientes.js" defer></script>
 </body>
-
 </html>
