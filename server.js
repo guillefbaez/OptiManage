@@ -10,7 +10,7 @@ app.use(express.json());
 // Servir archivos estáticos desde /public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ==================== ENDPOINTS DE AUTENTICACIÓN ====================
+// ==================== ENDPOINTS DE AUTENTICACIÓN ==================
 // Registrar un usuario (Crear Cuenta)
 app.post('/api/register', async (req, res) => {
   const { nombres, apellidos, correo, contrasena } = req.body;
