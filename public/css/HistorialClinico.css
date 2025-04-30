@@ -1,0 +1,141 @@
+/* TABLA HISTORIAL CLÍNICO */
+.tabla-clientes-section {
+    padding: 30px;
+  }
+  
+  .tabla-container {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+  
+  .tabla-clientes {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tabla-clientes thead {
+    background-color: var(--blue-light);
+  }
+  
+  .tabla-clientes th,
+  .tabla-clientes td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey-light);
+    font-size: 18px;
+    color: var(--text-dark);
+  }
+  
+  .tabla-clientes tbody tr:hover {
+    background-color: var(--grey-bg);
+  }
+  
+  .tabla-clientes button {
+    padding: 6px 12px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabla-clientes button:hover {
+    background-color: #084298;
+  }
+  
+  /* MODAL */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: var(--white);
+    padding: 30px;
+    width: 600px;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-family: "Segoe UI", sans-serif;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-content h3 {
+    font-size: 24px;
+    color: var(--blue-dark);
+    margin-bottom: 20px;
+  }
+  
+  .modal-content label {
+    font-weight: 600;
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+  }
+  
+  .modal-content input,
+  .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey-light);
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  
+  .modal-content button {
+    background-color: var(--blue-dark);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .modal-content button:hover {
+    background-color: #007c91;
+  }
+  
+  .modal .close,
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 22px;
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+  .modal .close:hover,
+  .close:hover {
+    color: #000;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

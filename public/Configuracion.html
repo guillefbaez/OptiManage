@@ -1,51 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/Dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pVI1PdL+...TUZOTz9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Configuración</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Óptica Jireh – Configuración</title>
+  <link rel="stylesheet" href="/public/css/Dashboard.css">
+  <link rel="stylesheet" href="/public/css/Configuracion.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pVI1PdL+...TUZOTz9w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
-
 <body>
-
-    <div class="dashboard">
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
-            </div>
-            <nav class="menu">
-                <ul>
-                    <li><i class="fa-solid fa-user"></i><a href="/public/Clientes.html"><span>Clientes</span></a></li>
-                    <!--<li><i class="fa-solid fa-file-medical"></i><a href="HistorialClinico.html"><span>Historial Clínico</span></a></li> Se puede cambiar a Clientes en ver detalles y agregar más -->
-                    <li><i class="fa-solid fa-glasses"></i><a href="/public/Lentes.html"><span>Lentes</span></a></li>
-                    <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a></li>
-                    <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a></li>
-                    <li><i class="fa-solid fa-gear"></i><a href="/public/Configuracion.html"><span>Configuración</span></a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <div class="profile">
-                    <img src="/public/images/Icono-Usuario.png" alt="Avatar">
-                    <span id="profileName">Usuario</span>
-                </div>
-                <a href="/public/Inicio.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
-        </aside>
-
-        <!-- ÁREA PRINCIPAL -->
-        <div class="main">
-            <!-- HEADER CON IMAGEN DE FONDO -->
-            <header class="main-header">
-                <img src="/public/images/Banner.png" alt="Banner">
-                <h1 id="welcomeMessage"></h1>
-            </header>
+  <div class="dashboard">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+      </div>
+      <nav class="menu">
+        <ul>
+          <li><i class="fa-solid fa-user"></i><a href="/public/Clientes.html"><span>Clientes</span></a></li>
+          <li><i class="fa-solid fa-file-medical"></i><a href="/public/HistorialClinico.html"><span>Historial Clínico</span></a></li>
+          <li><i class="fa-solid fa-glasses"></i><a href="/public/Lentes.html"><span>Lentes</span></a></li>
+          <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a></li>
+          <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a></li>
+          <li><i class="fa-solid fa-gear"></i><a href="/public/Configuracion.html"><span>Configuración</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="profile">
+          <img src="/public/images/Icono-Usuario.png" alt="Avatar">
+          <span id="profileName">Usuario</span>
         </div>
-    </div>
-</body>
+        <a href="/public/Inicio.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+      </div>
+    </aside>
 
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main">
+      <!-- HEADER CON IMAGEN DE FONDO -->
+      <header class="main-header">
+        <img src="/public/images/Banner.png" alt="Banner">
+        <h1 id="welcomeMessage"></h1>
+      </header>
+
+      <!-- BARRA SUPERIOR: filtro + buscador -->
+      <div class="top-bar">
+        <button class="filter-btn"><i class="fa-solid fa-filter"></i></button>
+        <div class="search-wrapper">
+          <input type="text" placeholder="Buscar...">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+
+     <!-- SECCIÓN DE CONFIGURACIÓN -->
+<section class="config-section">
+    <div class="config-card">
+      <h2>Configuración</h2>
+      <form id="configForm" class="config-grid">
+        <div>
+          <label for="firstName">Nombre(s):</label>
+          <input type="text" id="firstName" name="firstName" />
+        </div>
+  
+        <div>
+          <label for="lastName">Apellido(s):</label>
+          <input type="text" id="lastName" name="lastName" />
+        </div>
+  
+        <div>
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" />
+        </div>
+  
+        <div>
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ingrese su número de contacto">
+        </div>
+  
+        <div>
+          <label for="password">Contraseña nueva:</label>
+          <input type="password" id="password" name="password" />
+        </div>
+  
+        <div>
+          <label for="confirmPassword">Confirmar contraseña:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" />
+        </div>
+  
+        <button type="submit">Guardar Cambios</button>
+      </form>    
+    </div>
+  </section>
+      
+    </div>
+  </div>
+
+  <script src="/public/js/Configuracion.js" defer></script>
+  <script src="/public/js/Dashboard.js" defer></script>
+
+</body>
 </html>

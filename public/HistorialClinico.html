@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Óptica Jireh – Clientes</title>
+  <title>Óptica Jireh – Historial Clínico</title>
   <link rel="stylesheet" href="/public/css/Dashboard.css">
-  <link rel="stylesheet" href="/public/css/Clientes.css">
+  <link rel="stylesheet" href="/public/css/HistorialClinico.css">
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -20,7 +20,7 @@
     <aside class="sidebar">
       <div class="logo">
         <a href="/public/Dashboard.html">
-        <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
+          <img src="/public/images/Logo.jpeg" alt="Óptica Jireh">
         </a>
       </div>
       <nav class="menu">
@@ -44,78 +44,72 @@
 
     <!-- ÁREA PRINCIPAL -->
     <div class="main">
-      <!-- HEADER CON IMAGEN DE FONDO -->
       <header class="main-header">
         <img src="/public/images/Banner.png" alt="Banner">
         <h1 id="welcomeMessage"></h1>
       </header>
 
-      <!-- BARRA SUPERIOR: filtro + buscador -->
       <div class="top-bar">
-        <button class="filter-btn"><i class="fa-solid fa-filter"></i></button>
+        <button class="filter-btn" aria-label="Filtrar"><i class="fa-solid fa-filter"></i></button>
         <div class="search-wrapper">
-          <input type="text" placeholder="Buscar...">
+          <input type="text" placeholder="Buscar..." aria-label="Buscar">
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
 
-      <!-- TABLA DE CLIENTES -->
       <section class="tabla-clientes-section">
         <div class="tabla-container">
-          <h2>Lista de clientes</h2>
-          <button id="btnAgregarCliente" class="btn-agregar-cliente">➕ Agregar Cliente</button>
-      </button>
+          <h2>Historial Clínico</h2>
           <table class="tabla-clientes">
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Fecha de última consulta</th>
+                <th>Diagnóstico</th>
+                <th>Tratamiento</th>
                 <th>Acción</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="tbodyHistorial">
+              <!-- Filas en JS -->
+            </tbody>
           </table>
         </div>
       </section>
 
-      <!-- MODAL DE DETALLES -->
-<div id="modalDetalles" class="modal" style="display: none;">
-    <div class="modal-content">
-      <span class="close" onclick="cerrarModal()">&times;</span>
-      <h3>Editar Cliente</h3>
-      <form id="formDetalles">
-        <label>Nombre:</label>
-        <input type="text" id="inputNombre"><br><br>
-  
-        <label>Teléfono:</label>
-        <input type="text" id="inputTelefono"><br><br>
-  
-        <label>Correo:</label>
-        <input type="email" id="inputCorreo"><br><br>
-  
-        <label>Última Consulta:</label>
-        <input type="date" id="inputUltimaConsulta"><br><br>
-  
-        <hr style="margin: 20px 0;">
-        <h4>Historial Clínico</h4>
-  
-        <!-- Campos para una sola entrada de historial -->
-        <label>Fecha del historial:</label>
-        <input type="date" id="nuevaFecha"><br><br>
-  
-        <label>Detalle del historial:</label>
-        <input type="text" id="nuevoDetalle" placeholder="Descripción del historial"><br><br>
-  
-        <!-- Lista de historial existente -->
-        <ul id="listaHistorial" class="lista-historial"></ul>
-  
-        <button type="button" onclick="guardarCambios()">Guardar Cambios</button>
-      </form>
+      <!-- DETALLES HISTORIAL-CLINICO -->
+      <div id="modalDetallesHistorial" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="cerrarModalHistorial()" aria-label="Cerrar Modal">&times;</span>
+          <h3>Detalles del Historial Clínico</h3>
+
+          <label for="detalleNombreCliente">Nombre:</label>
+          <input type="text" id="detalleNombreCliente" readonly>
+
+          <label for="detalleDiagnosticoCliente">Diagnóstico:</label>
+          <input type="text" id="detalleDiagnosticoCliente" readonly>
+
+          <label for="detalleTratamientoCliente">Tratamiento:</label>
+          <input type="text" id="detalleTratamientoCliente" readonly>
+
+          <label for="detalleTelefonoCliente">Teléfono:</label>
+          <input type="text" id="detalleTelefonoCliente" readonly>
+
+          <label for="detalleCorreoCliente">Correo:</label>
+          <input type="email" id="detalleCorreoCliente" readonly>
+
+          <label for="detalleFechaConsulta">Fecha de última consulta:</label>
+          <input type="text" id="detalleFechaConsulta" readonly>
+
+          <label for="detalleEdadCliente">Edad:</label>
+          <input type="text" id="detalleEdadCliente" readonly>
+
+          <label for="detalleObservacionesCliente">Observaciones:</label>
+          <textarea id="detalleObservacionesCliente" readonly rows="3" style="width:100%; resize: none;"></textarea>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="/public/js/Lentes.js" defer></script>
+  <script src="/public/js/HistorialClinico.js" defer></script>
 </body>
 </html>
