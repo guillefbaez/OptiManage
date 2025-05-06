@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-pVI1PdL+...TUZOTz9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -26,11 +24,15 @@
             <nav class="menu">
                 <ul>
                     <li><i class="fa-solid fa-user"></i><a href="/public/Clientes.html"><span>Clientes</span></a></li>
-                    <li><i class="fa-solid fa-file-medical"></i><a href="/public/HistorialClinico.html"><span>Historial Clínico</span></a></li>
+                    <li><i class="fa-solid fa-file-medical"></i><a href="/public/HistorialClinico.html"><span>Historial
+                                Clínico</span></a></li>
                     <li><i class="fa-solid fa-glasses"></i><a href="/public/Lentes.html"><span>Lentes</span></a></li>
-                    <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a></li>
-                    <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a></li>
-                    <li><i class="fa-solid fa-gear"></i><a href="/public/Configuracion.html"><span>Configuración</span></a></li>
+                    <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a>
+                    </li>
+                    <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a>
+                    </li>
+                    <li><i class="fa-solid fa-gear"></i><a
+                            href="/public/Configuracion.html"><span>Configuración</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -51,21 +53,22 @@
             </header>
 
             <!-- Tabla de proveedores -->
-            <section>
-                <h2 id="TemaProv">Lista de Proveedores</h2><br>
-                <table id="tablaProveedores" class="display">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Teléfono</th>
-                            <th>Correo</th>
-                            <th>Productos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <section class="tabla-proveedores-section">
+                <div class="tabla-container">
+                    <h2 id="TemaProv">Lista de Proveedores</h2><br>
+                    <button id="btnAgregarProveedor" class="btn-agregar-proveedor">➕ Agregar Proveedor</button>
+                    <table class="tablaProveedores">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Productos</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </section>
         </div>
     </div>
@@ -83,15 +86,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- MODAL -->
+    <div id="modalAgregarProveedor" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalAgregarProveedor()">&times;</span>
+            <h3>Agregar Proveedor</h3>
+            <form id="formAgregarProveedor">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre"><br><br>
 
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono"><br><br>
+
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo"><br><br>
+
+                <button type="button" onclick="guardarProveedor()">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/public/js/Proveedores.js" defer></script>
 </body>
 

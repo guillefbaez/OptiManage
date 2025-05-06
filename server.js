@@ -140,7 +140,7 @@ app.delete('/api/clientes/:id', async (req, res) => {
 
 // ==================== ENDPOINTS DE PROVEEDORES ====================
 // Leer todos los proveedores
-app.get('/api/Proveedores', async (req, res) => {
+app.get('/api/proveedores', async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM Proveedores ORDER BY Nombre ASC');
     res.json(rows);
@@ -162,6 +162,44 @@ app.get('/api/proveedores/:id/productos', async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Error al leer productos del proveedor' });
+  }
+});
+
+// Agregar un nuevo proveedor
+app.post('/api/proveedores', async (req, res) => {
+  const { nombre, telefono, correo } = req.body;
+
+  if (!nombre || !telefono || !correo) {
+    return res.status(400).json({ error: 'Por favor complete todos los campos' });
+  }
+
+  try {
+    const [result] = await db.query(
+      'INSERT INTO Proveedores (Nombre, Telefono, Correo) VALUES (?, ?, ?)',
+      [nombre, telefono, correo]
+    );
+    res.status(201).json({ message: 'Proveedor agregado correctamente', id: result.insertId });
+  } catch (e) {
+    console.error('Error al insertar proveedor:', e);
+    res.status(500).json({ error: 'Error al agregar proveedor' });
+  }
+});
+
+// Eliminar un proveedor por ID
+app.delete('/api/proveedores/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [result] = await db.query(
+      'DELETE FROM Proveedores WHERE Id_proveedor = ?',
+      [id]
+    );
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Proveedor no encontrado' });
+    }
+    res.json({ message: 'Proveedor eliminado correctamente' });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al eliminar Proveedor' });
   }
 });
 

@@ -1,18 +1,51 @@
-.tabla-proveedores {
+.tabla-proveedores-section{
+  padding: 30px;
+}
+
+.tabla-container{
+  background: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.btn-agregar-proveedor{
+  background-color: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s;
+}
+
+.btn-agregar-proveedor:hover {
+  background-color: #007c91;
+}
+
+.tablaProveedores {
   width: 100%;
   border-collapse: collapse;
 }
 
-.tabla-proveedores th,
-.tabla-proveedores td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.tablaProveedores thead {
+  background-color: var(--blue-light);
 }
 
-.tabla-proveedores th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+.tablaProveedores th,
+.tablaProveedores td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--grey-light);
+  font-size: 18px;
+  color: var(--text-dark);
+}
+
+.tablaProveedores tbody tr:hover {
+  background-color: var(--grey-bg);
 }
 
 .modal {
@@ -36,6 +69,45 @@
   width: 50%;
 }
 
+.modal-content h3 {
+  font-size: 24px;
+  color: var(--blue-dark);
+  margin-bottom: 20px;
+}
+
+.modal-content label {
+  font-weight: 600;
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--grey-light);
+  border-radius: 6px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  background-color: var(--blue-dark);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #007c91;
+}
+
 .close {
   color: #aaa;
   float: right;
@@ -55,16 +127,6 @@
   cursor: pointer;
 }
 
-#tablaProveedores {
-  padding: 50px;
-  text-align: center;
-  margin: auto;
-}
-
-#tablaProveedores thead {
-  background-color: #81D4FA;
-}
-
 #TemaProv {
   text-align: center;
   padding-bottom: 20px;
@@ -82,15 +144,32 @@
 }
 
 .btn-detalles {
-  background-color: #52a3c9;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: white;
+  background-color: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
   font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .btn-detalles:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #0097a7;
+}
+
+/* Botón Eliminar */
+.btn-eliminar {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-eliminar:hover {
+  background-color: #c0392b;
 }
