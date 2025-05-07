@@ -1,0 +1,152 @@
+.reports {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 80vh;
+    margin: 80px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.report-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 220px;
+    text-align: center;
+    padding: 20px;
+    width: 250px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; 
+}
+
+.report-card h2 {
+    font-size: 22px;
+    color: #333;
+    min-height: 50px; /* Mantiene títulos alineados */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-card p {
+    font-size: 16px;
+    color: #666;
+    flex-grow: 1; /* Hace que el texto ocupe espacio proporcional */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-card a {
+    display: inline-block;
+    margin-top: auto; /* Se mantiene al final */
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.report-card a:hover {
+    background-color: #0056b3;
+}
+
+.titulo-reporte {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 24px;
+    color: white;
+    background-color: #007bff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+   }
+  
+   .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 50px;
+    width: 60%;
+    border-radius: 8px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+  
+  .close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }  
+
+#tablaClientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaClientes th, #tablaClientes td {
+    padding: 12px 20px; 
+    text-align: left; 
+}
+
+#tablaClientes th {
+    background-color: #007bff;
+    color: white;
+}
+
+#tablaClientes td {
+    border-bottom: 1px solid #ccc;
+    letter-spacing: 1px;
+}
+
+#tablaClientes tr:hover {
+    background-color: #f1f1f1; 
+}
+
+.close-inventario{
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#tablaInventario {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaInventario th, #tablaInventario td {
+    padding: 12px 20px; 
+    text-align: left; 
+}
+
+#tablaInventario th {
+    background-color: #007bff;
+    color: white;
+}
+
+#tablaInventario td {
+    border-bottom: 1px solid #ccc;
+    letter-spacing: 1px; 
+}
+
+#tablaInventario tr:hover {
+    background-color: #f1f1f1;
+}

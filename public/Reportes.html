@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
     <link rel="stylesheet" href="/public/css/Dashboard.css">
+    <link rel="stylesheet" href="/public/css/Reportes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-pVI1PdL+...TUZOTz9w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Reportes</title>
 </head>
 
 <body>
@@ -21,13 +22,15 @@
             <nav class="menu">
                 <ul>
                     <li><i class="fa-solid fa-user"></i><a href="/public/Clientes.html"><span>Clientes</span></a></li>
-                    <li><i class="fa-solid fa-file-medical"></i><a href="/public/HistorialClinico.html"><span>Historial Clínico</span></a></li>
-
-                    <!--<li><i class="fa-solid fa-file-medical"></i><a href="HistorialClinico.html"><span>Historial Clínico</span></a></li> Se puede cambiar a Clientes en ver detalles y agregar más -->
+                    <li><i class="fa-solid fa-file-medical"></i><a href="/public/HistorialClinico.html"><span>Historial
+                                Clínico</span></a></li>
                     <li><i class="fa-solid fa-glasses"></i><a href="/public/Lentes.html"><span>Lentes</span></a></li>
-                    <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a></li>
-                    <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a></li>
-                    <li><i class="fa-solid fa-gear"></i><a href="/public/Configuracion.html"><span>Configuración</span></a></li>
+                    <li><i class="fa-solid fa-hands"></i><a href="/public/Proveedores.html"><span>Proveedores</span></a>
+                    </li>
+                    <li><i class="fa-solid fa-file-lines"></i><a href="/public/Reportes.html"><span>Reportes</span></a>
+                    </li>
+                    <li><i class="fa-solid fa-gear"></i><a
+                            href="/public/Configuracion.html"><span>Configuración</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -41,13 +44,67 @@
 
         <!-- ÁREA PRINCIPAL -->
         <div class="main">
-            <!-- HEADER CON IMAGEN DE FONDO -->
             <header class="main-header">
                 <img src="/public/images/Banner.png" alt="Banner">
-                <h1 id="welcomeMessage"></h1>
             </header>
+
+            <div class="titulo-reporte">
+                <h2>Generar Reportes</h2>
+            </div>
+
+            <section class="reports">
+                <div class="report-card">
+                    <img src="/public/images/experto.png">
+                    <h2>Clientes frecuentes</h2><br>
+                    <p>Identificar a los clientes más activos.</p><br>
+                    <a onclick="mostrarClientesFrecuentes()">Ver reporte</a>
+                </div>
+                <div class="report-card">
+                    <img src="/public/images/inventario-disponible.png">
+                    <h2>Estado del inventario</h2><br>
+                    <p>Revisa el stock disponible.</p><br>
+                    <a onclick="mostrarInventario()">Ver reporte</a>
+                </div>
+            </section>
         </div>
     </div>
+
+    <div id="modalClientes" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Clientes Frecuentes</h2>
+            <table id="tablaClientes">
+                <thead>
+                    <tr>
+                        <th>ID Cliente</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Consultas</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalInventario" class="modal">
+        <div class="modal-content">
+            <span class="close-inventario">&times;</span>
+            <h2>Estado del Inventario</h2>
+            <table id="tablaInventario">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/public/js/Reportes.js" defer></script>
 </body>
 
 </html>

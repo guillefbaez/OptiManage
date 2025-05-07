@@ -203,6 +203,38 @@ app.delete('/api/proveedores/:id', async (req, res) => {
   }
 });
 
+// ==================== ENDPOINTS DE REPORTES ====================
+
+app.get('/api/historial_clinico', async (req, res) => {
+  try {
+    const [rows] = await db.query(`
+      SELECT c.Id_cliente, c.Nombres, c.Apellidos, COUNT(h.Id_cliente) AS veces
+      FROM historial_clinico h
+      JOIN clientes c ON h.Id_cliente = c.Id_cliente
+      GROUP BY c.Id_cliente, c.Nombres, c.Apellidos
+      HAVING veces >= 3
+    `);
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al obtener clientes frecuentes' });
+  }
+});
+
+app.get('/api/productos', async (req, res) => {
+  try {
+    const [rows] = await db.query(`
+      SELECT p.Nombre AS Producto, p.Cantidad, p.Id_proveedor, pr.Nombre AS NombreProveedor
+      FROM Productos p
+      JOIN Proveedores pr ON p.Id_proveedor = pr.Id_proveedor
+    `);
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al obtener el inventario' });
+  }
+});
+
 // Iniciar servidor
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -173,3 +173,27 @@
 .btn-eliminar:hover {
   background-color: #c0392b;
 }
+
+#tablaProductos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tablaProductos th, #tablaProductos td {
+  padding: 12px 20px; 
+  text-align: left; 
+}
+
+#tablaProductos th {
+  background-color: #007bff;
+  color: white;
+}
+
+#tablaProductos td {
+  border-bottom: 1px solid #ccc;
+  letter-spacing: 1px; 
+}
+
+#tablaProductos tr:hover {
+  background-color: #f1f1f1;
+}
