@@ -46,7 +46,7 @@ function mostrarClientesFrecuentes() {
     const tablaBody = document.querySelector('#tablaInventario tbody');
     tablaBody.innerHTML = '';
   
-    fetch('http://localhost:3000/api/productos')
+    fetch('http://localhost:3000/api/reportes/inventario')
       .then(res => res.json())
       .then(productos => {
         if (productos.length === 0) {

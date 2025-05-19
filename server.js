@@ -221,7 +221,7 @@ app.get('/api/historial_clinico', async (req, res) => {
   }
 });
 
-app.get('/api/productos', async (req, res) => {
+app.get('/api/reportes/inventario', async (req, res) => {
   try {
     const [rows] = await db.query(`
       SELECT p.Nombre AS Producto, p.Cantidad, p.Id_proveedor, pr.Nombre AS NombreProveedor
@@ -232,6 +232,49 @@ app.get('/api/productos', async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Error al obtener el inventario' });
+  }
+});
+
+
+app.get('/api/productos', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM Productos');
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al leer proveedores' });
+  }
+});
+
+app.post('/api/productos', async (req, res) => {
+  const {Nombre, Color, Cantidad, Precio, Tipo_lente, Graduacion_OI, Graduacion_OD, Descripcion } = req.body;
+
+  try {
+    const [result] = await db.query(
+      'INSERT INTO Productos (Nombre, Color, Cantidad, Precio, Tipo_lente, Graduacion_OD, Graduacion_OI, Descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [Nombre, Color, Cantidad, Precio, Tipo_lente, Graduacion_OI, Graduacion_OD, Descripcion]
+    );
+    res.status(201).json({ message: 'Producto agregado correctamente', id: result.insertId });
+  } catch (e) {
+    console.error('Error al insertar producto:', e);
+    res.status(500).json({ error: 'Error al agregar producto' });
+  }
+});
+
+app.delete('/api/productos/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [result] = await db.query(
+      'DELETE FROM Productos WHERE Id_producto = ?',
+      [id]
+    );
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+    res.json({ message: 'Producto eliminado correctamente' });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error al eliminar prodcuto' });
   }
 });
 

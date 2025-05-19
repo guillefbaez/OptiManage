@@ -1,41 +1,40 @@
 .reports {
     background-color: white;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap; /* Permite que las tarjetas se acomoden en filas */
+    justify-content: space-around; /* Distribuye las tarjetas de manera uniforme */
     align-items: center;
-    flex-wrap: wrap;
-    min-height: 80vh;
     margin: 80px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
 }
 
 .report-card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 220px;
+    width: 200px; /* Ajustando ancho para permitir múltiples tarjetas por fila */
+    min-height: 180px; /* Reduciendo altura */
     text-align: center;
-    padding: 20px;
-    width: 250px;
+    padding: 15px;
     margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1; 
 }
 
 .report-card h2 {
-    font-size: 22px;
+    font-size: 18px;
     color: #333;
-    min-height: 50px; /* Mantiene títulos alineados */
+    min-height: 40px; /* Mantiene títulos alineados */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .report-card p {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     flex-grow: 1; /* Hace que el texto ocupe espacio proporcional */
     display: flex;
@@ -46,7 +45,7 @@
 .report-card a {
     display: inline-block;
     margin-top: auto; /* Se mantiene al final */
-    padding: 10px 15px;
+    padding: 8px 12px; /* Reduciendo tamaño del botón */
     background-color: #007bff;
     color: white;
     text-decoration: none;
